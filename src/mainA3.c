@@ -1,12 +1,19 @@
 #include "../include/headerA3.h"
 
-int main()
+int main(int argc, char *argv[])
 {
 
     // Variable delclaration
 
     int choice = 0; // Menu selection choice
+    a3Emp *newEmp = NULL; // new employee
+    a3Emp *temp = (a3Emp*)malloc(sizeof(a3Emp));
+    temp->nextEmployee = NULL;
+
+
     printf("Hello World!\n");
+
+    loadEmpData(&newEmp, argv[1]);
 
     do
     {
@@ -28,71 +35,17 @@ int main()
 
         switch (choice)
         {
-        case 1:;
+        case 1:
 
-            a3Emp *newEmp = (a3Emp *)malloc(sizeof(a3Emp)); // new employee
-
-            // Asks user for full name
-            printf("Enter the first name of the employee: ");
-            scanf("%s", newEmp->fname);
-            printf("Enter the last name of the employee: ");
-            scanf("%s", newEmp->lname);
-
-            // Asks user for dependents
-            char depend = 'y';
-            int num = 0;
-
-            newEmp->dependents = malloc(sizeof(char *) * MAX_LENGTH);
-            newEmp->dependents[num] = malloc(sizeof(char) * MAX_LENGTH);
-
-            while (depend == 'y' || depend == 'Y')
-            {
-                printf("Enter name of dependent #%d: ", num + 1);
-                scanf("%s", newEmp->dependents[num]);
-
-                newEmp->dependents = realloc(newEmp->dependents, sizeof(char *) * (num + 1));
-                newEmp->dependents[num] = malloc(sizeof(char) * MAX_LENGTH);
-
-                while ((getchar()) != '\n')
-                    ; // fixes issue with previous fgets/scanf
-
-                printf("Do you have anymore dependents? (y/n): ");
-                scanf("%c", &depend);
-                num++;
-            }
-            printf("You have %d dependents.\n", num);
-
-            // Emplpyee ID
-            int total = 0;
-            int lnameLength = strlen(newEmp->lname);
-
-            for (int i = 0; i < strlen(newEmp->fname); i++)
-            {
-                //testing
-                char letter = newEmp->fname[i];
-                int ascii = (int)letter;
-                total = total + (int)newEmp->fname[i];
-
-                // printf("Letter: %c, ASCII: %d\n", letter, ascii);
-                // printf("ID: %d\n", total+lnameLength);
-            }
-            newEmp->empId = total +lnameLength;
-
-            printf("Your computer-generated name empID is %d.\n", newEmp->empId);
-            recruitEmployee(&newEmp);
-
-            // Freeing memory
-            for (int i = 0; i < num; i++)
-            {
-                free(newEmp->dependents[i]);
-            }
-            free(newEmp->dependents);
-            free(newEmp);
+            // newEmp = NULL;
+            recruitEmployee(&newEmp); //adds new employee - F1
             break;
 
-            /*case 2:
+        case 2://i waana go my room and? better enviro
+            //newEmp = (a3Emp *)malloc(sizeof(a3Emp)); 
+            printAll(newEmp);
                 break;
-
+/*
             case 3:
                 break;
 
@@ -116,6 +69,8 @@ int main()
         }
 
     } while (choice != 10);
+
+    free(newEmp);
 
     return 0;
 }
