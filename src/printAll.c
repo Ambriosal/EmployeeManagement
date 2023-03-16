@@ -5,6 +5,7 @@ void printAll(struct employee *headLL)
 {
 
     int index = 0;
+    int total = 0;
     a3Emp *current = (a3Emp *)malloc(sizeof(a3Emp));
     current->nextEmployee = NULL;
 
@@ -23,7 +24,7 @@ void printAll(struct employee *headLL)
         int  i= 0;
         while (current->dependents[i] != NULL){
 
-            printf("%s, ", current->dependents[i]);
+            printf("%s ", current->dependents[i]);
 
           i++;      
         }
@@ -31,8 +32,10 @@ void printAll(struct employee *headLL)
         printf("\n");
         printf("\n");
         index++;
+        total++;
         current = current->nextEmployee;
     }
+    printf("Currently, there are %d employees. \n", total);
 
     if (headLL == NULL)
     {

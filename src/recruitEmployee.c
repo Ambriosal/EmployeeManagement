@@ -41,9 +41,6 @@ void recruitEmployee(struct employee **headLL)
 
     for (int i = 0; i < strlen(newEmp->fname); i++)
     {
-        // testing
-        char letter = newEmp->fname[i];
-        int ascii = (int)letter;
         total = total + (int)newEmp->fname[i];
     }
 
