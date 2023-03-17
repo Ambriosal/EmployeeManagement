@@ -31,4 +31,10 @@ void printOne(struct employee *headLL, int whichOne)
         }
         current = current->nextEmployee;
     }
+
+        if (headLL == NULL)
+    {
+        printf("There are no such employees at this moment.\n");
+        return;
+    }
 }

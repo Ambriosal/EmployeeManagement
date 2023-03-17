@@ -13,20 +13,21 @@ void printAll(struct employee *headLL)
 
     while (current != NULL)
     { // traverse through the list
-        printf("Employee #%d:\n", index+1);
+        printf("Employee #%d:\n", index + 1);
 
         printf("Employee Id: %d\n", current->empId);
         printf("First name: %s\n", current->fname);
         printf("Last name: %s \n", current->lname);
         // Dependents
-    
+
         printf("Dependents[%d]: ", current->numDependents);
-        int  i= 0;
-        while (current->dependents[i] != NULL){
+        int i = 0;
+        while (current->dependents[i] != NULL)
+        {
 
             printf("%s ", current->dependents[i]);
 
-          i++;      
+            i++;
         }
 
         printf("\n");
@@ -35,7 +36,15 @@ void printAll(struct employee *headLL)
         total++;
         current = current->nextEmployee;
     }
-    printf("Currently, there are %d employees. \n", total);
+
+    if (index == 1)
+    {
+        printf("Currently, there is one employee.\n");
+    }
+    else
+    {
+        printf("Currently, there are %d employees. \n", total);
+    }
 
     if (headLL == NULL)
     {

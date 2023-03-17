@@ -17,5 +17,9 @@ int lookOnId (struct employee * headLL, int whichEmpId){
         current = current->nextEmployee;
 
     }
+    if (current == NULL){
+        printf("There are no employees at the moment");
+        return 0;
+    }
     return -1;
 }
