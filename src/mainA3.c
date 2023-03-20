@@ -7,12 +7,12 @@ int main(int argc, char *argv[])
 
     int choice = 0;       // Menu selection choice
     a3Emp *newEmp = NULL; // new employee
-    a3Emp *temp = (a3Emp *)malloc(sizeof(a3Emp));
-    temp->nextEmployee = NULL;
+    a3Emp *temp = newEmp;
     int pos = 0;      // F3 - position of list chosen
     int SearchID = 0; // F4 - search ID
     char *FullName = malloc(sizeof(char) * (2 * MAX_LENGTH));
     int totalF6 = 0; // total F6
+    int resultF5 = 0;
     int firePos = 0; // F8
     char fire = 'n'; // F9 - fire choice
     int count = 0;   // counting
@@ -43,11 +43,11 @@ int main(int argc, char *argv[])
         {
         case 1:
 
-            // newEmp = NULL;
             recruitEmployee(&newEmp); // adds new employee - F1
             break;
 
         case 2:
+
             printAll(newEmp);
             break;
 
@@ -67,7 +67,7 @@ int main(int argc, char *argv[])
             int result = lookOnId(newEmp, SearchID);
 
             if (result != -1)
-                printf("ID: %d is at pos %d.\n", SearchID, result);
+                printf("ID: %d is at position #%d.\n", SearchID, result);
             else if (result == -1)
                 printf("This employee with (ID: %d) does not exist.\n", SearchID);
 
@@ -80,11 +80,11 @@ int main(int argc, char *argv[])
             printf("Enter the full name of the employee: ");
             fgets(FullName, 2 * MAX_LENGTH, stdin);
 
-            int resultF5 = lookOnFullName(newEmp, FullName);
+            resultF5 = lookOnFullName(newEmp, FullName);
 
-            if (result != -1)
-                printf("This employee is at pos %d.\n", resultF5);
-            else if (result == -1)
+            if (resultF5 != -1)
+                printf("This employee is at position #%d.\n", resultF5);
+            else if (resultF5 == -1)
                 printf("This employee does not exist.\n");
 
             break;
@@ -151,7 +151,22 @@ int main(int argc, char *argv[])
 
     } while (choice != 10);
 
-    free(newEmp);
+    while (newEmp != NULL)
+    {
+        temp = newEmp;
+        newEmp = newEmp->nextEmployee;
+
+        for (int i = 0; i < temp->numDependents; i++)
+        {
+            free(temp->dependents[i]);
+        }
+        free(temp->dependents);
+        // free dependents
+        free(temp);
+    }
+
+    newEmp = NULL;
+    free(FullName);
 
     return 0;
 }

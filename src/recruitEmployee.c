@@ -2,7 +2,7 @@
 
 void recruitEmployee(struct employee **headLL)
 {
-    a3Emp *newEmp = (a3Emp *)malloc(sizeof(a3Emp)); // new employee
+    a3Emp *newEmp = malloc(sizeof(a3Emp)); // new employee
 
     // Asks user for full name
     printf("Enter the first name of the employee: ");
@@ -13,7 +13,7 @@ void recruitEmployee(struct employee **headLL)
     // Asks user for dependents
     char depend = 'y';
     int num = 0;
-
+    a3Emp *temp = *headLL; // temp node
     newEmp->dependents = malloc(sizeof(char *) * 1);
     newEmp->dependents[num] = malloc(sizeof(char) * MAX_LENGTH);
 
@@ -22,18 +22,20 @@ void recruitEmployee(struct employee **headLL)
         printf("Enter name of dependent #%d: ", num + 1); // name of dependent
         scanf("%s", newEmp->dependents[num]);
 
-        newEmp->dependents = realloc(newEmp->dependents, sizeof(char *) * (num + 2)); // resizing pointer
-        newEmp->dependents[num + 1] = malloc(sizeof(char) * MAX_LENGTH);
+        newEmp->dependents = realloc(newEmp->dependents, sizeof(char *) * (num + 2)); // resizing pointer        
+        newEmp->dependents[num+1] = malloc(sizeof(char) * (MAX_LENGTH +1));
 
         while ((getchar()) != '\n')
             ; // fixes issue with previous fgets/scanf
-
-        printf("Do you have anymore dependents? (y/n): ");
+        printf("Do you have any more dependents? (y/n): ");
         scanf("%c", &depend);
         num++; // next dependent
+
     }
+
     newEmp->numDependents = num;
     printf("You have %d dependent(s).\n", num);
+
 
     //-----> Employee ID
     int total = 0;
@@ -46,10 +48,7 @@ void recruitEmployee(struct employee **headLL)
 
     newEmp->empId = total + lnameLength; // empId formula
 
-    a3Emp *temp = (a3Emp *)malloc(sizeof(a3Emp)); // temp node
-    temp->nextEmployee = NULL;
-
-    temp = *headLL; // temp is at head of linked list
+    newEmp ->nextEmployee = NULL;
 
     while (temp != NULL) // if temp is at first node
     {
@@ -60,6 +59,7 @@ void recruitEmployee(struct employee **headLL)
 
         temp = temp->nextEmployee; // moves to next node
     }
+    printf("num: %d\n\n", num);
 
     if (*headLL == NULL) // if there is not current head
     {
@@ -80,5 +80,5 @@ void recruitEmployee(struct employee **headLL)
         temp = temp->nextEmployee;
     }
 
-    // end of function
+
 }

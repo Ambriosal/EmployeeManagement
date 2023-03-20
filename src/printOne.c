@@ -12,19 +12,17 @@ void printOne(struct employee *headLL, int whichOne)
         index++;
         if (index == whichOne)
         {
-            printf("Employee ID: %d\n", current->empId);
-            printf("First name: %s\n", current->fname);
-            printf("Last name: %s\n", current->lname);
+            printf("\tEmployee ID: %d\n", current->empId);
+            printf("\tFirst name: %s\n", current->fname);
+            printf("\tLast name: %s\n", current->lname);
 
             //Dependents
-            printf("Dependents: ");
-            int  i= 0;
-            while (current->dependents[i] != NULL)
+            printf("\tDependents: ");
+            for(int i = 0; i < current->numDependents; i++)
             {
 
                 printf("%s ", current->dependents[i]);
-
-            i++;      
+ 
             }
             printf("\n");
             return;

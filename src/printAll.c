@@ -6,29 +6,28 @@ void printAll(struct employee *headLL)
 
     int index = 0;
     int total = 0;
-    a3Emp *current = (a3Emp *)malloc(sizeof(a3Emp));
-    current->nextEmployee = NULL;
 
-    current = headLL; // moves current to head of list
+    a3Emp *current = headLL;
+
+    // current = headLL; // moves current to head of list
 
     while (current != NULL)
     { // traverse through the list
         printf("Employee #%d:\n", index + 1);
 
-        printf("Employee Id: %d\n", current->empId);
-        printf("First name: %s\n", current->fname);
-        printf("Last name: %s \n", current->lname);
+        printf("\tEmployee Id: %d\n", current->empId);
+        printf("\tFirst name: %s\n", current->fname);
+        printf("\tLast name: %s \n", current->lname);
         // Dependents
 
-        printf("Dependents[%d]: ", current->numDependents);
-        int i = 0;
-        while (current->dependents[i] != NULL)
-        {
+        printf("\tDependents[%d]: ", current->numDependents);
 
+        for (int i = 0; i < current->numDependents; i++)
+        {
             printf("%s ", current->dependents[i]);
 
-            i++;
         }
+        // }
 
         printf("\n");
         printf("\n");

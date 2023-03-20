@@ -51,5 +51,6 @@ void fireOne(a3Emp **headLL, int whichOne)
         printf("There are now %d employees.\n", total);
     }
 
+
     free(current);
 }

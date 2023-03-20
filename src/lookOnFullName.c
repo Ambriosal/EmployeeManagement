@@ -20,10 +20,5 @@ int lookOnFullName(struct employee *headLL, char whichName[100])
         current = current->nextEmployee;
     }
 
-    if (current == NULL){
-        printf("There are no employees at the moment.\n");
-        return 0;
-    }
-
     return -1;
 }

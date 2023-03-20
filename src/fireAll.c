@@ -10,6 +10,12 @@ void fireAll(a3Emp **headLL)
     {
         temp = current;
         current = current->nextEmployee;
+        for (int i = 0; i < temp->numDependents; i++)
+        {
+
+            free(temp->dependents[i]);
+        }
+        free(temp->dependents);
         free(temp);
     }
 
