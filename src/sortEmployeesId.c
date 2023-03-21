@@ -1,5 +1,6 @@
 #include "../include/headerA3.h"
 
+// Sorts linked list based on EmpID
 void sortEmployeesId(struct employee *headLL)
 {
     // Using bubble sort
@@ -66,6 +67,12 @@ void sortEmployeesId(struct employee *headLL)
                     current->dependents[i] = current->nextEmployee->dependents[i];
                     current->nextEmployee->dependents[i] = temp;
                 }
+                // Freeing memory for tempDependents
+                for (int i = 0; i < tempNumDepend; i++)
+                {
+                    free(tempDependents[i]);
+                }
+                free(tempDependents);
 
                 swap = 1; // swap successful
             }
@@ -74,7 +81,5 @@ void sortEmployeesId(struct employee *headLL)
         }
     } while (swap != 0);
 
-    printAll(headLL);
-
-    // free
+    printAll(headLL); // Now prints sorted list
 }

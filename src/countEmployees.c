@@ -1,15 +1,17 @@
 #include "../include/headerA3.h"
 
-int countEmployees (a3Emp * headLL){
+// Counts total employees in linked list
+int countEmployees(a3Emp *headLL)
+{
 
     a3Emp *current = headLL;
-    int total = 0;
+    int total = 0; // # of employees
 
-    while(current != NULL){
-        total++;
+    while (current != NULL)
+    { // Traverses list
 
-        current = current->nextEmployee;
-
+        total++;                         // increments
+        current = current->nextEmployee; // next employee
     }
 
     return total;

@@ -4,12 +4,10 @@
 void printAll(struct employee *headLL)
 {
 
-    int index = 0;
-    int total = 0;
+    int index = 0; // pos of employee
+    int total = 0; // total amount of employees
 
     a3Emp *current = headLL;
-
-    // current = headLL; // moves current to head of list
 
     while (current != NULL)
     { // traverse through the list
@@ -19,15 +17,12 @@ void printAll(struct employee *headLL)
         printf("\tFirst name: %s\n", current->fname);
         printf("\tLast name: %s \n", current->lname);
         // Dependents
-
         printf("\tDependents[%d]: ", current->numDependents);
 
         for (int i = 0; i < current->numDependents; i++)
         {
             printf("%s ", current->dependents[i]);
-
         }
-        // }
 
         printf("\n");
         printf("\n");

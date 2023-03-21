@@ -1,5 +1,6 @@
 #include "../include/headerA3.h"
 
+// Adds employee content into linked list
 void recruitEmployee(struct employee **headLL)
 {
     a3Emp *newEmp = malloc(sizeof(a3Emp)); // new employee
@@ -22,20 +23,30 @@ void recruitEmployee(struct employee **headLL)
         printf("Enter name of dependent #%d: ", num + 1); // name of dependent
         scanf("%s", newEmp->dependents[num]);
 
-        newEmp->dependents = realloc(newEmp->dependents, sizeof(char *) * (num + 2)); // resizing pointer        
-        newEmp->dependents[num+1] = malloc(sizeof(char) * (MAX_LENGTH +1));
+        newEmp->dependents = realloc(newEmp->dependents, sizeof(char *) * (num + 2)); // resizing pointer
+        newEmp->dependents[num + 1] = malloc(sizeof(char) * (MAX_LENGTH + 1));
+        newEmp->dependents[num + 1] = NULL;
 
         while ((getchar()) != '\n')
             ; // fixes issue with previous fgets/scanf
         printf("Do you have any more dependents? (y/n): ");
         scanf("%c", &depend);
         num++; // next dependent
-
     }
 
-    newEmp->numDependents = num;
+    newEmp->numDependents = num; // num of dependets for emp
     printf("You have %d dependent(s).\n", num);
 
+    // Need to free the extra space made ??
+    for (int i = 0; i < newEmp->numDependents + 1; i++)
+    {
+        printf("For loop\n");
+        if (newEmp->dependents[i] == NULL)
+        {
+            printf("In while loop?\n");
+            free(newEmp->dependents[i]);
+        }
+    }
 
     //-----> Employee ID
     int total = 0;
@@ -46,20 +57,19 @@ void recruitEmployee(struct employee **headLL)
         total = total + (int)newEmp->fname[i];
     }
 
-    newEmp->empId = total + lnameLength; // empId formula
+    newEmp->empId = total + lnameLength; // EmpId formula
 
-    newEmp ->nextEmployee = NULL;
+    newEmp->nextEmployee = NULL;
 
-    while (temp != NULL) // if temp is at first node
+    while (temp != NULL) // checks each employee (node)
     {
         if (temp->empId == newEmp->empId) // checks if current empID is same as newEmp
         {
-            newEmp->empId = newEmp->empId + (rand() % (999 - 1) + 1) + 1;
+            newEmp->empId = newEmp->empId + (rand() % (999 - 1) + 1) + 1; // random # added
         }
 
         temp = temp->nextEmployee; // moves to next node
     }
-    printf("num: %d\n\n", num);
 
     if (*headLL == NULL) // if there is not current head
     {
@@ -69,16 +79,16 @@ void recruitEmployee(struct employee **headLL)
 
     printf("Your computer-generated name empID is %d.\n", newEmp->empId); // print EmpId
 
+    // Adding employee to end of list
+
     temp = *headLL; // Temp back to head of list
     while (temp != NULL)
     {
         if (temp->nextEmployee == NULL) // once it reaches end
         {
             temp->nextEmployee = newEmp; // newEmp add to end of list
-            return; //found end
+            return;                      // found end
         }
         temp = temp->nextEmployee;
     }
-
-
 }

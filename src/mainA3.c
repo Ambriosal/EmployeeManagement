@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
     int count = 0;   // counting
     printf("Hello World!\n");
 
-    loadEmpData(&newEmp, argv[1]);
+    loadEmpData(&newEmp, argv[1]); // Uses helper function with input file
 
     do
     {
@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
         printf("10. Exit\n");
 
         printf("\n");
-        printf("Please select a menu option: ");
+        printf("Please select a menu option: "); //user selects choice
         scanf("%d", &choice);
 
         switch (choice)
@@ -48,14 +48,14 @@ int main(int argc, char *argv[])
 
         case 2:
 
-            printAll(newEmp);
+            printAll(newEmp); //Prints current employees - F2
             break;
 
         case 3:
 
             printf("Enter a position: ");
             scanf("%d", &pos);
-            printOne(newEmp, pos);
+            printOne(newEmp, pos); //Finds employee at current pos - F3
 
             break;
 
@@ -67,7 +67,7 @@ int main(int argc, char *argv[])
             int result = lookOnId(newEmp, SearchID);
 
             if (result != -1)
-                printf("ID: %d is at position #%d.\n", SearchID, result);
+                printf("ID: %d is at position #%d.\n", SearchID, result); // Emp. found
             else if (result == -1)
                 printf("This employee with (ID: %d) does not exist.\n", SearchID);
 
@@ -83,13 +83,14 @@ int main(int argc, char *argv[])
             resultF5 = lookOnFullName(newEmp, FullName);
 
             if (resultF5 != -1)
-                printf("This employee is at position #%d.\n", resultF5);
+                printf("This employee is at position #%d.\n", resultF5); // Emp found.
             else if (resultF5 == -1)
                 printf("This employee does not exist.\n");
 
             break;
         case 6:
-            count = countEmployees(newEmp);
+
+            count = countEmployees(newEmp); //Counts # of employees - F6
 
             if (count == 1)
             {
@@ -100,20 +101,23 @@ int main(int argc, char *argv[])
                 printf("There are %d employees.\n", countEmployees(newEmp));
             }
             printf("\n");
+
             break;
 
         case 7:
-            sortEmployeesId(newEmp);
 
+            sortEmployeesId(newEmp); //Shows sorted list - F7
             break;
+
         case 8:
+
             temp = newEmp;
             while (temp != NULL) // checks how many employees
             {
                 totalF6++;
                 temp = temp->nextEmployee;
             }
-            if (totalF6 == 0) // if linked list is NULL, empty
+            if (totalF6 == 0) // if linked list is empty
             {
                 printf("Currently, there are no employees.\n");
                 break;
@@ -129,28 +133,31 @@ int main(int argc, char *argv[])
 
             printf("Which employee do you wish to fire — enter a value between 1 and %d: ", totalF6);
             scanf("%d", &firePos);
-            fireOne(&newEmp, firePos);
+            fireOne(&newEmp, firePos); //removes selected employee - F8
+
             totalF6 = 0; // reset employee count
             printf("\n");
 
             break;
 
         case 9:
+
             while ((getchar()) != '\n')
                 ; // fixes issue with previous fgets/scanf
             printf("Are you sure you want to fire everyone? (y/n): ");
             scanf("%c", &fire);
             if (fire == 'y')
             {
-                fireAll(&newEmp);
+                fireAll(&newEmp); // removes all employees - F9
                 printf("All fired. Linked list is now empty.\n");
             }
 
             break;
         }
 
-    } while (choice != 10);
+    } while (choice != 10); //Exits menu 
 
+    //Freeing memory
     while (newEmp != NULL)
     {
         temp = newEmp;
