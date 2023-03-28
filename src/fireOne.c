@@ -31,16 +31,24 @@ void fireOne(a3Emp **headLL, int whichOne)
     }
     else
     {
-        prev->nextEmployee = current->nextEmployee;
+        // prev->nextEmployee = current->nextEmployee;
+        // for (int i = 0; i < prev->numDependents; i++)
+        // {
+        //     free(prev->dependents[i]);
+        // }
+        // free(prev->dependents);
     }
 
     a3Emp *count = *headLL;
 
+    // Counts # of emp left
     while (count != NULL)
     {
         total++;
         count = count->nextEmployee;
     }
+
+    // Printing # of emp
     if (total == 1)
     {
         printf("There is now 1 employee.");
@@ -50,5 +58,6 @@ void fireOne(a3Emp **headLL, int whichOne)
         printf("There are now %d employees.\n", total);
     }
 
-    free(current);
+    // Free info
+    // free(prev);
 }

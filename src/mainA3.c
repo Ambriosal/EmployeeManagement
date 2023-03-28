@@ -162,6 +162,7 @@ int main(int argc, char *argv[])
     {
         temp = newEmp;
         newEmp = newEmp->nextEmployee;
+        // newEmp = temp->nextEmployee;
 
         for (int i = 0; i < temp->numDependents; i++)
         {
@@ -172,7 +173,8 @@ int main(int argc, char *argv[])
         free(temp);
     }
 
-    newEmp = NULL;
+    // newEmp = NULL;
+    free(newEmp);
     free(FullName);
 
     return 0;

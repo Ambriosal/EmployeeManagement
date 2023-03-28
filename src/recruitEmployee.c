@@ -24,29 +24,23 @@ void recruitEmployee(struct employee **headLL)
         scanf("%s", newEmp->dependents[num]);
 
         newEmp->dependents = realloc(newEmp->dependents, sizeof(char *) * (num + 2)); // resizing pointer
-        newEmp->dependents[num + 1] = malloc(sizeof(char) * (MAX_LENGTH + 1));
-        newEmp->dependents[num + 1] = NULL;
+        // newEmp->dependents[num + 1] = malloc(sizeof(char) * (MAX_LENGTH + 1));
 
         while ((getchar()) != '\n')
             ; // fixes issue with previous fgets/scanf
         printf("Do you have any more dependents? (y/n): ");
         scanf("%c", &depend);
+
+        //If user has another dependent
+        if (depend == 'y' || depend == 'Y'){
+            newEmp->dependents[num + 1] = malloc(sizeof(char) * (MAX_LENGTH + 1));
+        }
+
         num++; // next dependent
     }
 
     newEmp->numDependents = num; // num of dependets for emp
     printf("You have %d dependent(s).\n", num);
-
-    // Need to free the extra space made ??
-    for (int i = 0; i < newEmp->numDependents + 1; i++)
-    {
-        printf("For loop\n");
-        if (newEmp->dependents[i] == NULL)
-        {
-            printf("In while loop?\n");
-            free(newEmp->dependents[i]);
-        }
-    }
 
     //-----> Employee ID
     int total = 0;
