@@ -42,7 +42,7 @@ void printAll(struct employee *headLL)
 
     if (headLL == NULL)
     {
-        printf("There are no employees at this moment.\n");
+        printf("There are no employees because the list is empty.\n");
         return;
     }
 }

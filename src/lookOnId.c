@@ -7,6 +7,10 @@ int lookOnId(struct employee *headLL, int whichEmpId)
     int index = 0; // pos of employee
     a3Emp *current = headLL;
 
+    if (current == NULL){ //List is empty
+        return -1;
+    }
+
     while (current != NULL)
     { // Traverses list
 
@@ -19,5 +23,5 @@ int lookOnId(struct employee *headLL, int whichEmpId)
         current = current->nextEmployee;
     }
 
-    return -1; // Employee could not be found
+    return 0; // Employee could not be found
 }

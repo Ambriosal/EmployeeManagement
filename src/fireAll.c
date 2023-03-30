@@ -6,6 +6,12 @@ void fireAll(a3Emp **headLL)
     a3Emp *current = *headLL;
     a3Emp *temp = NULL;
 
+
+    if(current == NULL){
+        printf("There are no employees. The list is empty.\n");
+        return;
+    }
+
     while (current != NULL)
     {// Traverses the list
 
@@ -21,5 +27,6 @@ void fireAll(a3Emp **headLL)
         free(temp);
     }
 
+    printf("All fired. Linked list is now empty.\n");
     *headLL = NULL;
 }

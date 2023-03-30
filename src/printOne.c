@@ -33,7 +33,7 @@ void printOne(struct employee *headLL, int whichOne)
 
     if (headLL == NULL) // If list is empty
     {
-        printf("There are no such employees at this moment.\n");
+        printf("There are no such employees at this moment because the list is empty.\n");
         return;
     }
 }

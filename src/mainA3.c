@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
         printf("10. Exit\n");
 
         printf("\n");
-        printf("Please select a menu option: "); //user selects choice
+        printf("Please select a menu option: "); // user selects choice
         scanf("%d", &choice);
 
         switch (choice)
@@ -48,14 +48,14 @@ int main(int argc, char *argv[])
 
         case 2:
 
-            printAll(newEmp); //Prints current employees - F2
+            printAll(newEmp); // Prints current employees - F2
             break;
 
         case 3:
 
             printf("Enter a position: ");
             scanf("%d", &pos);
-            printOne(newEmp, pos); //Finds employee at current pos - F3
+            printOne(newEmp, pos); // Finds employee at current pos - F3
 
             break;
 
@@ -66,9 +66,13 @@ int main(int argc, char *argv[])
 
             int result = lookOnId(newEmp, SearchID);
 
+            if (result == -1)
+            {
+                printf("There are no employees. List is empty.\n");
+            }
             if (result != -1)
                 printf("ID: %d is at position #%d.\n", SearchID, result); // Emp. found
-            else if (result == -1)
+            else if (result == 0)
                 printf("This employee with (ID: %d) does not exist.\n", SearchID);
 
             break;
@@ -82,23 +86,31 @@ int main(int argc, char *argv[])
 
             resultF5 = lookOnFullName(newEmp, FullName);
 
+            if (result == -1)
+            {
+                printf("There are not employees. List is empty.\n");
+            }
             if (resultF5 != -1)
                 printf("This employee is at position #%d.\n", resultF5); // Emp found.
-            else if (resultF5 == -1)
+            else if (resultF5 == 0)
                 printf("This employee does not exist.\n");
 
             break;
         case 6:
 
-            count = countEmployees(newEmp); //Counts # of employees - F6
+            count = countEmployees(newEmp); // Counts # of employees - F6
 
-            if (count == 1)
+            if (count == 0)
+            {
+                printf("There are no employees. Employee list is empty.\n");
+            }
+            else if (count == 1)
             {
                 printf("There is one employee.");
             }
             else
             {
-                printf("There are %d employees.\n", countEmployees(newEmp));
+                printf("There are %d employees.\n", count);
             }
             printf("\n");
 
@@ -106,7 +118,8 @@ int main(int argc, char *argv[])
 
         case 7:
 
-            sortEmployeesId(newEmp); //Shows sorted list - F7
+            printf("Printing sorted list:\n");
+            sortEmployeesId(newEmp); // Shows sorted list - F7
             break;
 
         case 8:
@@ -117,9 +130,10 @@ int main(int argc, char *argv[])
                 totalF6++;
                 temp = temp->nextEmployee;
             }
+
             if (totalF6 == 0) // if linked list is empty
             {
-                printf("Currently, there are no employees.\n");
+                printf("Currently, there are no employees. The list is empty.\n");
                 break;
             }
             else if (totalF6 == 1) // if one
@@ -133,7 +147,7 @@ int main(int argc, char *argv[])
 
             printf("Which employee do you wish to fire — enter a value between 1 and %d: ", totalF6);
             scanf("%d", &firePos);
-            fireOne(&newEmp, firePos); //removes selected employee - F8
+            fireOne(&newEmp, firePos); // removes selected employee - F8
 
             totalF6 = 0; // reset employee count
             printf("\n");
@@ -149,15 +163,14 @@ int main(int argc, char *argv[])
             if (fire == 'y')
             {
                 fireAll(&newEmp); // removes all employees - F9
-                printf("All fired. Linked list is now empty.\n");
             }
 
             break;
         }
 
-    } while (choice != 10); //Exits menu 
+    } while (choice != 10); // Exits menu
 
-    //Freeing memory
+    // Freeing memory
     while (newEmp != NULL)
     {
         temp = newEmp;

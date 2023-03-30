@@ -7,6 +7,11 @@ int countEmployees(a3Emp *headLL)
     a3Emp *current = headLL;
     int total = 0; // # of employees
 
+    if (current == NULL)
+    {
+        return 0;
+    }
+
     while (current != NULL)
     { // Traverses list
 

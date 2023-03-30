@@ -4,7 +4,7 @@
 void sortEmployeesId(struct employee *headLL)
 {
     // Using bubble sort
-    int swap; // chcecks if two values were swapped
+    int swap; // checks if two values were swapped
     a3Emp *current = headLL;
 
     // Holds members in temp variable for swapping
@@ -16,6 +16,7 @@ void sortEmployeesId(struct employee *headLL)
     // If list is empty or only one node currently
     if (headLL == NULL || headLL->nextEmployee == NULL)
     {
+        printf("Cannot sort list.\n");
         printf("There is only one employee or the employee list is empty.\n");
         return; // no sorting necessary
     }
@@ -58,11 +59,11 @@ void sortEmployeesId(struct employee *headLL)
 
                 for (int i = 0; i < tempNumDepend; i++)
                 {
-                    tempDependents[i] = malloc(sizeof(char) * MAX_LENGTH);
+                    tempDependents[i] = malloc(sizeof(char) * (MAX_LENGTH+1));
                 }
                 // swapping dependents here
-                for (int i = 0; i < tempNumDepend; i++)
-                {
+                for (int i = 0; i < tempNumDepend; i++) //FIX FOR LOOP LOGIC
+                { // ISSUE HERE. WHAT IF 1. HAS 5 DEP BUT TEMP HAS 3? 2 ARE LOST
                     char *temp = current->dependents[i];
                     current->dependents[i] = current->nextEmployee->dependents[i];
                     current->nextEmployee->dependents[i] = temp;
