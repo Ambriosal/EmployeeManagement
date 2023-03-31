@@ -53,27 +53,9 @@ void sortEmployeesId(struct employee *headLL)
                 current->nextEmployee->numDependents = tempNumDepend;
 
                 // --->Swapping dependent names
-
-                // Allocating memory for temp variables
-                char **tempDependents = malloc(sizeof(char *) * (tempNumDepend));
-
-                for (int i = 0; i < tempNumDepend; i++)
-                {
-                    tempDependents[i] = malloc(sizeof(char) * (MAX_LENGTH+1));
-                }
-                // swapping dependents here
-                for (int i = 0; i < tempNumDepend; i++) //FIX FOR LOOP LOGIC
-                { // ISSUE HERE. WHAT IF 1. HAS 5 DEP BUT TEMP HAS 3? 2 ARE LOST
-                    char *temp = current->dependents[i];
-                    current->dependents[i] = current->nextEmployee->dependents[i];
-                    current->nextEmployee->dependents[i] = temp;
-                }
-                // Freeing memory for tempDependents
-                for (int i = 0; i < tempNumDepend; i++)
-                {
-                    free(tempDependents[i]);
-                }
-                free(tempDependents);
+                    char **temp = current->dependents;
+                    current->dependents = current->nextEmployee->dependents;
+                    current->nextEmployee->dependents = temp;
 
                 swap = 1; // swap successful
             }

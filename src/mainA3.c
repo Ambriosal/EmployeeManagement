@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
     int pos = 0;      // F3 - position of list chosen
     int SearchID = 0; // F4 - search ID
     char *FullName = malloc(sizeof(char) * (2 * MAX_LENGTH));
-    int totalF6 = 0; // total F6
+    int totalF6 = 0; // total F8
     int resultF5 = 0;
     int firePos = 0; // F8
     char fire = 'n'; // F9 - fire choice
@@ -67,13 +67,11 @@ int main(int argc, char *argv[])
             int result = lookOnId(newEmp, SearchID);
 
             if (result == -1)
-            {
-                printf("There are no employees. List is empty.\n");
-            }
-            if (result != -1)
-                printf("ID: %d is at position #%d.\n", SearchID, result); // Emp. found
+                printf("There are no employees. The list is empty.\n");
             else if (result == 0)
                 printf("This employee with (ID: %d) does not exist.\n", SearchID);
+            else
+                printf("ID: %d is at position #%d.\n", SearchID, result); // Emp. found
 
             break;
 
@@ -86,14 +84,12 @@ int main(int argc, char *argv[])
 
             resultF5 = lookOnFullName(newEmp, FullName);
 
-            if (result == -1)
-            {
-                printf("There are not employees. List is empty.\n");
-            }
-            if (resultF5 != -1)
-                printf("This employee is at position #%d.\n", resultF5); // Emp found.
+            if (resultF5== -1)
+                printf("There are not employees. The list is empty.\n");
             else if (resultF5 == 0)
-                printf("This employee does not exist.\n");
+                printf("This employee does not exist in the current list.\n");
+            else
+                printf("This employee is at position #%d.\n", resultF5); // Emp found.
 
             break;
         case 6:
@@ -102,7 +98,7 @@ int main(int argc, char *argv[])
 
             if (count == 0)
             {
-                printf("There are no employees. Employee list is empty.\n");
+                printf("There are no employees. The employee list is empty.\n");
             }
             else if (count == 1)
             {
@@ -118,7 +114,7 @@ int main(int argc, char *argv[])
 
         case 7:
 
-            printf("Printing sorted list:\n");
+            printf("Printing sorted list:\n\n");
             sortEmployeesId(newEmp); // Shows sorted list - F7
             break;
 
@@ -133,6 +129,7 @@ int main(int argc, char *argv[])
 
             if (totalF6 == 0) // if linked list is empty
             {
+                printf("Cannot fire any employees.\n");
                 printf("Currently, there are no employees. The list is empty.\n");
                 break;
             }
@@ -186,7 +183,6 @@ int main(int argc, char *argv[])
         free(temp);
     }
 
-    // newEmp = NULL;
     free(newEmp);
     free(FullName);
 

@@ -36,10 +36,10 @@ a3Emp *createEmpDataFromFile(FILE *filePtr)
 
    tempPtr->dependents = malloc(sizeof(char *) * 2);
 
-   tempPtr->dependents[0] = malloc(sizeof((strlen(tempDependents[0]) + 1)));
+   tempPtr->dependents[0] = malloc(sizeof(strlen(tempDependents[0]) + 1));
    strcpy(tempPtr->dependents[0], tempDependents[0]);
 
-   tempPtr->dependents[1] = malloc(sizeof((strlen(tempDependents[1]) + 1)));
+   tempPtr->dependents[1] = malloc(sizeof(strlen(tempDependents[1]) + 1));
    strcpy(tempPtr->dependents[1], tempDependents[1]);
 
    tempPtr->nextEmployee = NULL;

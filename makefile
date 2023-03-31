@@ -1,5 +1,5 @@
-proFile: mainA3.o helperA3.o countEmployees.o fireAll.o fireOne.o loadEmpData.o lookOnFullName.o  lookOnId.o printAll.o printOne.o recruitEmployee.o sortEmployeesId.o
-	gcc -Wall -std=c99 -g mainA3.o helperA3.o countEmployees.o fireAll.o fireOne.o loadEmpData.o lookOnFullName.o lookOnId.o printAll.o printOne.o recruitEmployee.o sortEmployeesId.o -o bin/proFile
+proFile: mainA3.o helperA3.o countEmployees.o fireAll.o fireOne.o lookOnFullName.o  lookOnId.o printAll.o printOne.o recruitEmployee.o sortEmployeesId.o
+	gcc -Wall -std=c99 -g mainA3.o helperA3.o countEmployees.o fireAll.o fireOne.o lookOnFullName.o lookOnId.o printAll.o printOne.o recruitEmployee.o sortEmployeesId.o -o bin/proFile
 
 mainA3.o: src/mainA3.c include/headerA3.h
 	gcc -Wall -std=c99 -c -g src/mainA3.c
@@ -12,9 +12,6 @@ fireAll.o: src/fireAll.c include/headerA3.h
 
 fireOne.o: src/fireOne.c include/headerA3.h
 	gcc -Wall -std=c99 -c -g src/fireOne.c
-
-loadEmpData.o: src/loadEmpData.c include/headerA3.h
-	gcc -Wall -std=c99 -c -g src/loadEmpData.c
 
 lookOnFullName.o: src/lookOnFullName.c include/headerA3.h
 	gcc -Wall -std=c99 -c -g src/lookOnFullName.c

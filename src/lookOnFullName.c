@@ -9,17 +9,15 @@ int lookOnFullName(struct employee *headLL, char whichName[100])
     int first = 0;
     int last = 0;
 
-    FName = calloc(MAX_LENGTH, sizeof(char));
-    LName = calloc(MAX_LENGTH, sizeof(char));
-    int index = 0; // pos of employee
-
     if (current == NULL)
     { // List is empty
       // Freeing memory
-        free(FName);
-        free(LName);
         return -1;
     }
+
+    FName = calloc(MAX_LENGTH, sizeof(char));
+    LName = calloc(MAX_LENGTH, sizeof(char));
+    int index = 0; // pos of employee
 
     sscanf(whichName, "%s %s", FName, LName); // saves first name and last name
 

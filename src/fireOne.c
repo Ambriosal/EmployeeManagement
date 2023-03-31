@@ -13,14 +13,13 @@ void fireOne(a3Emp **headLL, int whichOne)
     { // Traverses list until selection employee
         prev = current;
         current = current->nextEmployee;
-
         i++;
     }
 
     // if given position is out of range
     if (current == NULL)
     {
-        printf("That is out of range.\n");
+        printf("The number selected is out of range.\n");
         return;
     }
 
@@ -31,12 +30,15 @@ void fireOne(a3Emp **headLL, int whichOne)
     }
     else
     {
-        // prev->nextEmployee = current->nextEmployee;
-        // for (int i = 0; i < prev->numDependents; i++)
-        // {
-        //     free(prev->dependents[i]);
-        // }
-        // free(prev->dependents);
+        prev->nextEmployee = current->nextEmployee;
+
+    }
+
+    if(current->dependents != NULL){
+        for(int i = 0; i <current-> numDependents; i++){
+            free(current->dependents[i]);
+        }
+        free(current->dependents);
     }
 
     a3Emp *count = *headLL;
@@ -59,5 +61,7 @@ void fireOne(a3Emp **headLL, int whichOne)
     }
 
     // Free info
-    // free(prev);
+    if (current != NULL){
+        free(current);
+    }
 }
