@@ -15,6 +15,7 @@ void fireOne(a3Emp **headLL, int whichOne)
         current = current->nextEmployee;
         i++;
     }
+    printf("Employee [Id: %d] fired.\n", current->empId);
 
     // if given position is out of range
     if (current == NULL)
@@ -35,6 +36,7 @@ void fireOne(a3Emp **headLL, int whichOne)
     }
 
     if(current->dependents != NULL){
+
         for(int i = 0; i <current-> numDependents; i++){
             free(current->dependents[i]);
         }

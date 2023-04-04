@@ -28,7 +28,11 @@ void printOne(struct employee *headLL, int whichOne)
             printf("\tDependents: ");
             for (int i = 0; i < current->numDependents; i++)
             {
-                printf("%s ", current->dependents[i]);
+                printf("%s", current->dependents[i]);
+                if (i != current->numDependents - 1)
+                {
+                    printf(", ");
+                }
             }
 
             printf("\n");
@@ -36,5 +40,9 @@ void printOne(struct employee *headLL, int whichOne)
         }
         current = current->nextEmployee; // next node
     }
+
+    if (current == NULL){ // input does not match any pos #
+        printf("Input number is out of range of employee list.\n");
+    }
+    
 }
-// Code if not found

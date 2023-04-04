@@ -11,7 +11,6 @@ int lookOnFullName(struct employee *headLL, char whichName[100])
 
     if (current == NULL)
     { // List is empty
-      // Freeing memory
         return -1;
     }
 

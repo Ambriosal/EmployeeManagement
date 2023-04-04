@@ -13,6 +13,7 @@ void printAll(struct employee *headLL)
     { // traverse through the list
         printf("Employee #%d:\n", index + 1);
 
+        //Print info of members
         printf("\tEmployee Id: %d\n", current->empId);
         printf("\tFirst name: %s\n", current->fname);
         printf("\tLast name: %s \n", current->lname);
@@ -21,7 +22,10 @@ void printAll(struct employee *headLL)
 
         for (int i = 0; i < current->numDependents; i++)
         {
-            printf("%s ", current->dependents[i]);
+            printf("%s", current->dependents[i]);
+            if( i != current->numDependents -1){
+                printf(", ");
+            }
         }
 
         printf("\n");

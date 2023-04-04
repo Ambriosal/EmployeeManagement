@@ -16,7 +16,6 @@ int main(int argc, char *argv[])
     int firePos = 0; // F8
     char fire = 'n'; // F9 - fire choice
     int count = 0;   // counting
-    printf("Hello World!\n");
 
     loadEmpData(&newEmp, argv[1]); // Uses helper function with input file
 
@@ -88,9 +87,10 @@ int main(int argc, char *argv[])
                 printf("There are not employees. The list is empty.\n");
             else if (resultF5 == 0)
                 printf("This employee does not exist in the current list.\n");
-            else
+            else{
                 printf("This employee is at position #%d.\n", resultF5); // Emp found.
-
+                printOne(newEmp, resultF5);
+            }
             break;
         case 6:
 

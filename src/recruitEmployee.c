@@ -40,6 +40,7 @@ void recruitEmployee(struct employee **headLL)
     }
 
     newEmp->numDependents = num; // num of dependets for emp
+    printf("\n");
     printf("You have %d dependent(s).\n", num);
 
     //-----> Employee ID
@@ -48,7 +49,7 @@ void recruitEmployee(struct employee **headLL)
 
     for (int i = 0; i < strlen(newEmp->fname); i++)
     {
-        total = total + (int)newEmp->fname[i];
+        total = total + (int)newEmp->fname[i]; //ASCII conversion
     }
 
     newEmp->empId = total + lnameLength; // EmpId formula
@@ -57,7 +58,7 @@ void recruitEmployee(struct employee **headLL)
 
     while (temp != NULL) // checks each employee (node)
     {
-        if (temp->empId == newEmp->empId) // checks if current empID is same as newEmp
+        while (temp->empId == newEmp->empId) // checks if current empID is same as newEmp
         {
             newEmp->empId = newEmp->empId + (rand() % (999 - 1) + 1) + 1; // random # added
         }
@@ -83,6 +84,6 @@ void recruitEmployee(struct employee **headLL)
             temp->nextEmployee = newEmp; // newEmp add to end of list
             return;                      // found end
         }
-        temp = temp->nextEmployee;
+        temp = temp->nextEmployee; // next node
     }
 }
