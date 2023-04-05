@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
     char fire = 'n'; // F9 - fire choice
     int count = 0;   // counting
 
-    loadEmpData(&newEmp, argv[1]); // Uses helper function with input file
+    //loadEmpData(&newEmp, argv[1]); // Uses helper function with input file
 
     do
     {

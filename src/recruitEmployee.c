@@ -66,13 +66,13 @@ void recruitEmployee(struct employee **headLL)
         temp = temp->nextEmployee; // moves to next node
     }
 
+    printf("Your computer-generated name empID is %d.\n", newEmp->empId); // print EmpId
+
     if (*headLL == NULL) // if there is not current head
     {
         *headLL = newEmp; // make newEmp current head of list
         return;
     }
-
-    printf("Your computer-generated name empID is %d.\n", newEmp->empId); // print EmpId
 
     // Adding employee to end of list
 
